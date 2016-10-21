@@ -1,4 +1,4 @@
-package com.zdorovets;
+п»їpackage com.zdorovets;
 /*
  * BowlingGame class
  * @author Evgeny Zdorovets
@@ -7,13 +7,13 @@ package com.zdorovets;
 public class BowlingGame {
 	private int score = 0;
 	/*
-	 * @param pins - количество кеглей
+	 * @param pins - РєРѕР»РёС‡РµСЃС‚РІРѕ РєРµРіР»РµР№
 	 */
 	public void roll(int pins) {
 		score += pins;
 	}
 	/* 
-	 * @return количество очков
+	 * @return РєРѕР»РёС‡РµСЃС‚РІРѕ РѕС‡РєРѕРІ
 	 */
 	public int score(){
 		return score;

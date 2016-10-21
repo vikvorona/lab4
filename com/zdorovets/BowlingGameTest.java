@@ -1,4 +1,4 @@
-package com.zdorovets;
+Ôªøpackage com.zdorovets;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,9 +21,9 @@ class MyException extends Exception {
 public class BowlingGameTest extends TestCase {
 	private BowlingGame g;
 	/*
-	 * ÒÓÁ‰‡ÂÚ Ë„Û
+	 * —Å–æ–∑–¥–∞–µ—Ç –∏–≥—Ä—É
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws MyException {
 		g = new BowlingGame();
 	}
 	
@@ -33,14 +33,24 @@ public class BowlingGameTest extends TestCase {
 	}
 	
 	@Test
-	public void testGutterGame() throws Exception {
+	public void testGutterGame() throws MyException {
 		rollMany(20, 0);
 	    Assert.assertEquals(0, g.score());
 	}
 	
 	@Test
-	public void testAllOnes() throws Exception {
+	public void testAllOnes() throws MyException {
 		rollMany(20, 1);
 	    Assert.assertEquals(20, g.score());
 	}
+	
+	@Test
+	public void testOneSpare() throws MyException {
+	    g.roll(5);
+	    g.roll(5); // —Å–ª—É—á–∞–π "spare"
+	    g.roll(3);
+	    rollMany(17,0);
+	    assertEquals(16,g.score());
+	}
+
 }
