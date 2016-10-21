@@ -34,16 +34,13 @@ public class BowlingGameTest extends TestCase {
 	
 	@Test
 	public void testGutterGame() throws Exception {
-		int n = 20;
-		int pins = 0;
-		rollMany(n, pins);
+		rollMany(20, 0);
 	    Assert.assertEquals(0, g.score());
 	}
 	
 	@Test
 	public void testAllOnes() throws Exception {
-		for (int i = 0; i < 20; i++)
-		      g.roll(1);
+		rollMany(20, 1);
 	    Assert.assertEquals(20, g.score());
 	}
 }
