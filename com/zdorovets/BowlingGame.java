@@ -5,5 +5,6 @@ package com.zdorovets;
  * created on 21/10/16
  */
 public class BowlingGame {
-
+	public void roll(int pins) {
+	  }
 }
