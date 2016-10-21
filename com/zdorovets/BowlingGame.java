@@ -14,6 +14,6 @@ public class BowlingGame {
 	 * @return количество очков
 	 */
 	public int score(){
-		return -1;
+		return 0;
 	}
 }
