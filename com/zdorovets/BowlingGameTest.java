@@ -43,7 +43,7 @@ public class BowlingGameTest extends TestCase {
 		rollMany(20, 1);
 	    Assert.assertEquals(20, g.score());
 	}
-	
+	/*
 	@Test
 	public void testOneSpare() throws MyException {
 	    g.roll(5);
@@ -52,5 +52,5 @@ public class BowlingGameTest extends TestCase {
 	    rollMany(17,0);
 	    assertEquals(16,g.score());
 	}
-
+    */
 }

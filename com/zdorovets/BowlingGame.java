@@ -6,11 +6,14 @@
  */
 public class BowlingGame {
 	private int score = 0;
+	private int rolls[] = new int[21];
+	private int currentRoll = 0;
 	/*
 	 * @param pins - количество кеглей
 	 */
 	public void roll(int pins) {
 		score += pins;
+		rolls[currentRoll++] = pins;
 	}
 	/* 
 	 * @return количество очков
