@@ -26,10 +26,20 @@ public class BowlingGameTest extends TestCase {
 	protected void setUp() throws MyException {
 		g = new BowlingGame();
 	}
-	
+	/*
+	 * @param n количество попыток
+	 * @param pins количество сбитых кеглей в каждой попытке 
+	 */
 	private void rollMany(int n, int pins){
 		for (int i=0; i<n; i++)
 	    	g.roll(pins);
+	}
+	/*
+	 * Обеспечивает ситуацию, когда 10 кеглей сбито за две попытки
+	 */
+	private void rollSpare(){
+		g.roll(5);
+		g.roll(5);
 	}
 	
 	@Test
@@ -46,8 +56,7 @@ public class BowlingGameTest extends TestCase {
 	
 	@Test
 	public void testOneSpare() throws MyException {
-	    g.roll(5);
-	    g.roll(5); // случай "spare"
+	    rollSpare();
 	    g.roll(3);
 	    rollMany(17,0);
 	    assertEquals(16,g.score());
