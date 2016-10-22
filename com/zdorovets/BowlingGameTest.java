@@ -41,6 +41,12 @@ public class BowlingGameTest extends TestCase {
 		g.roll(5);
 		g.roll(5);
 	}
+	/*
+	 * Обеспечивает ситуацию, когда 10 кеглей сбито за одну попытку
+	 */
+	private void rollStrike(){
+		g.roll(10);
+	}
 	
 	@Test
 	public void testGutterGame() throws MyException {
@@ -64,7 +70,7 @@ public class BowlingGameTest extends TestCase {
 	
 	@Test
 	public void testOneStrike() throws MyException{
-		g.roll(10); // strike
+		rollStrike();
 		g.roll(3);
 		g.roll(4);
 		rollMany(16, 0);
