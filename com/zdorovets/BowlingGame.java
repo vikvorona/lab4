@@ -20,16 +20,15 @@ public class BowlingGame {
 		int score = 0;
 		int frameIndex = 0;
 		for (int frame = 0; frame < 10; frame++){
-			if(rolls[frameIndex] == 10) // strike
-			{
-				score += 10 + rolls[frameIndex + 1]+ rolls[frameIndex + 2];
+			if(rolls[frameIndex] == 10){ // strike			
+				score += 10 + strikeBonus(frameIndex);
 				frameIndex++;
 			}
 			else if (isSpare(frameIndex)){
-				score += 10 + rolls[frameIndex + 2];
+				score += 10 + spareBonus(frameIndex);
 				frameIndex += 2;
 			} else {
-				score += rolls[frameIndex] + rolls[frameIndex+1];
+				score += sumOfPinsInFrame(frameIndex);
 				frameIndex += 2;
 			}
 		}
@@ -42,4 +41,26 @@ public class BowlingGame {
 	private boolean isSpare(int frameIndex){
 		return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
 	}
+	/* 
+	 * @param frameIndex индекс захода
+	 * @return сумма очков за заход
+	 */
+	private int sumOfPinsInFrame(int frameIndex) {
+	    return rolls[frameIndex]+rolls[frameIndex+1];
+	  }
+    /*
+     * @param frameIndex индекс захода
+     * @return бонус за spare
+     */
+	private int spareBonus(int frameIndex) {
+	    return rolls[frameIndex + 2];
+	}
+	/*
+     * @param frameIndex индекс захода
+     * @return бонус за strike
+     */
+	private int strikeBonus(int frameIndex) {
+	    return rolls[frameIndex+1]+rolls[frameIndex+2];
+	}
+
 }
