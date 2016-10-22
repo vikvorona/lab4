@@ -59,7 +59,15 @@ public class BowlingGameTest extends TestCase {
 	    rollSpare();
 	    g.roll(3);
 	    rollMany(17,0);
-	    assertEquals(16,g.score());
+	    Assert.assertEquals(16,g.score());
 	}
-    
+	
+	@Test
+	public void testOneStrike() throws MyException{
+		g.roll(10); // strike
+		g.roll(3);
+		g.roll(4);
+		rollMany(16, 0);
+		Assert.assertEquals(24, g.score());
+	}
 }
