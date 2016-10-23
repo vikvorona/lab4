@@ -5,10 +5,19 @@ import junit.framework.TestCase;
  */
 
 public class BowlingTest extends TestCase {
-    public void testGame() throws Exception {
-        Bowling g = new Bowling();
+    Bowling bowling = new Bowling();
+
+    public void testAllZero() throws Exception {
         for (int i = 0; i < 20;i++)
-            g.roll(0);
-        assertEquals(0, g.score());
+            bowling.roll(0);
+
+        assertEquals(0, bowling.score());
+    }
+
+    public void testAllOnes() throws Exception {
+        for (int i = 0; i < 20; i++)
+            bowling.roll(1);
+
+        assertEquals(20,bowling.score());
     }
 }
