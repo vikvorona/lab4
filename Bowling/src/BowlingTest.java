@@ -35,6 +35,18 @@ public class BowlingTest extends TestCase {
 
         rollsCycle(7,0);
 
+        //5+5+2*3+7*0=16
         assertEquals(16,bowling.score());
+    }
+
+    public void testOneStrike() throws Exception {
+
+        bowling.roll(10); // strike
+        bowling.roll(3);
+        bowling.roll(4);
+
+        //10+2*3+2*4=24
+        assertEquals(24, bowling.score());
+
     }
 }
