@@ -1,3 +1,5 @@
+package com.vittach;
+
 /**
  * Created by VITTACH on 23.10.2016.
  */
@@ -14,6 +16,9 @@ public class Bowling {
         rolls[currentRoll++] = pins;
     }
 
+    /**
+     * @return количество набранных очков за всю игру
+     */
     public int score() {
         int finalScore = 0;
         int frameIterator = 0;
