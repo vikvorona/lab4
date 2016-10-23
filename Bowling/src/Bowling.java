@@ -14,9 +14,18 @@ public class Bowling {
     }
 
     public int score() {
+        int frameIterator = 0;
         int score= 0;
-        for(int i = 0; i < rolls.length; i++)
-            score += rolls[i];
+
+        for (int frame = 0; frame < 10; frame++)  {
+            if (rolls[frameIterator] + rolls[frameIterator + 1] == 10) { // spare situation
+                score += 10 + rolls[frameIterator + 2];
+                frameIterator += 2;
+            } else {
+                score += rolls[frameIterator] + rolls[frameIterator + 1];
+                frameIterator += 2;
+            }
+        }
         return score;
     }
 }
