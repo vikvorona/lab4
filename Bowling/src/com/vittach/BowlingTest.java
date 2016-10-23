@@ -9,7 +9,7 @@ import junit.framework.TestCase;
  */
 
 public class BowlingTest extends TestCase {
-    Bowling bowling;
+    private Bowling bowling;
 
     /**
      * инициализация игрового процесса
