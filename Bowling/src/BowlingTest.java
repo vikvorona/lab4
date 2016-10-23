@@ -1,5 +1,7 @@
 import junit.framework.TestCase;
 
+import java.util.Random;
+
 /**
  * Created by VITTACH on 23.10.2016.
  */
@@ -29,24 +31,39 @@ public class BowlingTest extends TestCase {
 
     public void testOneSpare() throws Exception {
 
-        bowling.roll(5);
-        bowling.roll(5); // spare
+        rollSpare(); // spare
+
         bowling.roll(3);
 
         rollsCycle(7,0);
 
-        //5+5+2*3+7*0=16
+        // (x=rand(10))+(10-x)+2*3+7*0=16
         assertEquals(16,bowling.score());
     }
 
     public void testOneStrike() throws Exception {
 
-        bowling.roll(10); // strike
+        rollStrike(); // strike
         bowling.roll(3);
         bowling.roll(4);
 
         //10+2*3+2*4=24
-        assertEquals(24, bowling.score());
+        assertEquals(24,bowling.score());
+    }
 
+    public void testIdealGame() throws Exception {
+        rollsCycle(12,10);
+        assertEquals(300,bowling.score());
+    }
+
+    private void rollStrike() {
+        bowling.roll(10);
+    }
+
+    private void rollSpare() {
+        Random r = new Random();
+        int number=r.nextInt(10);
+        bowling.roll(number);
+        bowling.roll(10-number);
     }
 }
