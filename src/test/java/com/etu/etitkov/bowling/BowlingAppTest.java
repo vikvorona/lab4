@@ -15,11 +15,11 @@ public class BowlingAppTest {
     @Test
     public void testConstructor() {
         BowlingApp s = new BowlingApp();
-        assertEquals("bad frame # for new Scorer",
+        assertEquals("bad frame # for new BowlingApp",
                 1, s.frameNumber());
-        assertEquals("bad score for new Scorer",
+        assertEquals("bad score for new BowlingApp",
                 0, s.scoreSoFar());
-        assertFalse("game is over for new Scorer",
+        assertFalse("game is over for new BowlingApp",
                 s.gameIsOver());
     }
 
@@ -38,21 +38,58 @@ public class BowlingAppTest {
     }
 
     @Test
-    public void testFrameOneMiss ( ) {
-        BowlingApp s = new BowlingApp ( );
-        int[] result = s.roll (2);
-        assertEquals ("bad result after frame 1",
+    public void testFrameOneMiss() {
+        BowlingApp s = new BowlingApp();
+        int[] result = s.roll(2);
+        assertEquals("bad result after frame 1",
                 1, result.length);
-        assertEquals ("bad result[0] after frame 1",
+        assertEquals("bad result[0] after frame 1",
                 3, result[0]);
-        assertEquals ("frame # after frame 1 is wrong",
-                2, s.frameNumber ( ));
-        assertEquals ("score after frame 1 is wrong",
-                3, s.scoreSoFar ( ));
-        assertFalse ("game is over after 1st frame",
-                s.gameIsOver ( ));
+        assertEquals("frame # after frame 1 is wrong",
+                2, s.frameNumber());
+        assertEquals("score after frame 1 is wrong",
+                3, s.scoreSoFar());
+        assertFalse("game is over after 1st frame",
+                s.gameIsOver());
     }
 
+    @Test
+    public void testThirdBall() {
+        BowlingApp s = new BowlingApp();
+        int[] result = s.roll(1);
+        result = s.roll(2);
+        result = s.roll(4);
+        assertEquals("bad result after ball 3",
+                1, result.length);
+        assertEquals("bad result[0] after ball 3",
+                3, result[0]);
+        assertEquals("frame # after ball 3 is wrong",
+                2, s.frameNumber());
+        assertEquals("score after ball 3 is wrong",
+                3, s.scoreSoFar());
+        assertFalse("game is over after 1st frame",
+                s.gameIsOver());
+    }
 
+    @Test
+    public void testFrameTwoMiss() {
+        BowlingApp s = new BowlingApp();
+        int[] result = s.roll(1);
+        result = s.roll(2);
+        result = s.roll(4);
+        result = s.roll(1);
+        assertEquals("bad result after frame 2",
+                2, result.length);
+        assertEquals("bad result[0] after frame 2",
+                3, result[0]);
+        assertEquals("bad result[1] after frame 2",
+                8, result[0]);
+        assertEquals("frame # after frame 2 is wrong",
+                3, s.frameNumber());
+        assertEquals("score after frame 2 is wrong",
+                8, s.scoreSoFar());
+        assertFalse("game is over after frame 2",
+                s.gameIsOver());
+    }
 
 }
