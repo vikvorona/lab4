@@ -5,21 +5,34 @@ package com.etu.etitkov.bowling;
  */
 public class BowlingApp {
 
+    private int[] frameScores;
+
+
     private int rollingFrame;
     private int totalScore;
 
-    public BowlingApp ( ) {
+    public BowlingApp() {
         rollingFrame = 1;
         totalScore = 0;
+        frameScores = new int[0];
+
     }
-    public int frameNumber ( ) {
+
+    public int frameNumber() {
         return rollingFrame;
     }
-    public int scoreSoFar ( ) {
+
+    public int scoreSoFar() {
         return totalScore;
     }
-    public boolean gameIsOver ( ) {
+
+    public boolean gameIsOver() {
         return false;
     }
+
+    public int [ ] roll (int ball) {
+        return frameScores;
+    }
+
 
 }

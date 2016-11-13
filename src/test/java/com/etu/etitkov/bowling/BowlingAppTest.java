@@ -13,13 +13,27 @@ public class BowlingAppTest {
     }
 
     @Test
-    public void testConstructor ( ) {
-        BowlingApp s = new BowlingApp ( );
-        assertEquals ("bad frame # for new Scorer",
-                1, s.frameNumber ( ));
-        assertEquals ("bad score for new Scorer",
-                0, s.scoreSoFar ( ));
-        assertFalse ("game is over for new Scorer",
+    public void testConstructor() {
+        BowlingApp s = new BowlingApp();
+        assertEquals("bad frame # for new Scorer",
+                1, s.frameNumber());
+        assertEquals("bad score for new Scorer",
+                0, s.scoreSoFar());
+        assertFalse("game is over for new Scorer",
+                s.gameIsOver());
+    }
+
+    @Test
+    public void testFirstRoll() {
+        BowlingApp s = new BowlingApp();
+        int[] result = s.roll(1);
+        assertEquals("result of 1st roll is wrong",
+                0, result.length);
+        assertEquals("frame # after 1st ball is wrong",
+                1, s.frameNumber());
+        assertEquals("score after 1st ball is wrong",
+                0, s.scoreSoFar());
+        assertFalse("game is over after 1st ball",
                 s.gameIsOver());
     }
 
