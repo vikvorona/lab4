@@ -37,5 +37,22 @@ public class BowlingAppTest {
                 s.gameIsOver());
     }
 
+    @Test
+    public void testFrameOneMiss ( ) {
+        BowlingApp s = new BowlingApp ( );
+        int[] result = s.roll (2);
+        assertEquals ("bad result after frame 1",
+                1, result.length);
+        assertEquals ("bad result[0] after frame 1",
+                3, result[0]);
+        assertEquals ("frame # after frame 1 is wrong",
+                2, s.frameNumber ( ));
+        assertEquals ("score after frame 1 is wrong",
+                3, s.scoreSoFar ( ));
+        assertFalse ("game is over after 1st frame",
+                s.gameIsOver ( ));
+    }
+
+
 
 }
