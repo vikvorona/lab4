@@ -10,6 +10,7 @@ public class Frame {
     private int firstRollScore;
     private int secondRollScore;
     private int thirdRollScore;
+    private int totalFrameScore;
     private boolean strike;
     private boolean spare;
 
@@ -30,12 +31,14 @@ public class Frame {
     public void nextRoll(int pins) {
         if (currentRoll == 1) {
             firstRollScore = pins;
+            totalFrameScore += firstRollScore;
             currentRoll++;
             if (getTotalFrameScore() == 10) {
                 strike = true;
             }
         } else if (currentRoll == 2) {
             secondRollScore = pins;
+            totalFrameScore += secondRollScore;
             currentRoll++;
             if (getTotalFrameScore() == 10) {
                 spare = true;
@@ -43,12 +46,16 @@ public class Frame {
         }
     }
 
+    public void addBonus(int bonus) {
+        totalFrameScore += bonus;
+    }
+
     /**
      * Total frame score
      * @return total frame score
      */
     public int getTotalFrameScore() {
-        return firstRollScore + secondRollScore;
+        return totalFrameScore;
     }
 
     public int getFrameNumber() {

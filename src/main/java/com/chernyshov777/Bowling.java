@@ -27,6 +27,16 @@ public class Bowling {
      * Calculate current game score
      */
     private void calculateScore() {
+        int currentFrame = 0;
+        for (Frame frame : frames) {
+            if (currentFrame > 0) {
+                if (frames.get(currentFrame-1).isSpare()) {
+                    frames.get(currentFrame-1).addBonus(frame.getFirstRollScore());
+                }
+            }
+            currentFrame++;
+        }
+
         for (Frame frame : frames) {
             totalScore += frame.getTotalFrameScore();
         }
