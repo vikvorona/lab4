@@ -22,6 +22,7 @@ public class FrameTest {
         Assert.assertEquals("wrong first Roll score", 0, frame.getFirstRollScore());
         Assert.assertEquals("wrong second Roll score", 0, frame.getSecondRollScore());
         Assert.assertEquals("wrong third Roll score", 0, frame.getThirdRollScore());
+        Assert.assertFalse("strike parameter is wrong", frame.isStrike());
     }
 
     /**
@@ -39,5 +40,23 @@ public class FrameTest {
         Assert.assertEquals("second roll score is wrong" , 4, frame.getSecondRollScore());
         Assert.assertEquals("frame total score is wrong", 9, frame.getTotalFrameScore());
         Assert.assertFalse("total frame score is bigger than 10", frame.getTotalFrameScore() > 10);
+    }
+
+    /**
+     * Test for nextRoll() with strike and spare opportunity
+     */
+    @Test
+    public void testNextRollWithStrikeAndSpare() {
+        Frame strikeFrame = new Frame(2);
+        Assert.assertEquals("current roll is wrong", 1, frame.getCurrentRoll());
+        strikeFrame.nextRoll(10);
+        Assert.assertTrue("not a strike", strikeFrame.isStrike());
+
+        Frame spareFrame = new Frame(3);
+        spareFrame.nextRoll(6);
+        spareFrame.nextRoll(4);
+        Assert.assertEquals("current roll is wrong", 2, frame.getCurrentRoll());
+        Assert.assertTrue("not a spare", strikeFrame.isSpare());
+        Assert.assertFalse("strike", strikeFrame.isStrike());
     }
 }

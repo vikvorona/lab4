@@ -10,6 +10,8 @@ public class Frame {
     private int firstRollScore;
     private int secondRollScore;
     private int thirdRollScore;
+    private boolean strike;
+    private boolean spare;
 
     public Frame(int frameNumber) {
         this.frameNumber = frameNumber;
@@ -17,6 +19,8 @@ public class Frame {
         firstRollScore = 0;
         secondRollScore = 0;
         thirdRollScore = 0;
+        strike = false;
+        spare = false;
     }
 
     /**
@@ -59,5 +63,13 @@ public class Frame {
 
     public int getThirdRollScore() {
         return thirdRollScore;
+    }
+
+    public boolean isStrike() {
+        return strike;
+    }
+
+    public boolean isSpare() {
+        return spare;
     }
 }
