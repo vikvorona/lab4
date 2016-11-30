@@ -22,6 +22,7 @@ public class ScoringBowlingTest{
         for (int i = 0; i < throwNums; i++) {
             bowling.roll(pins);
         }
+        System.out.println(bowling);
     }
 
     @Test
@@ -33,5 +34,14 @@ public class ScoringBowlingTest{
     public void testAllOnesGame() throws BowlingGameException{
         throwsInARow(20,1);
         Assert.assertEquals(20,bowling.getScore());
+    }
+    @Test
+    public void testTwo5RestOne() throws BowlingGameException{
+        throwsInARow(3,1);
+        throwsInARow(1,5);
+        throwsInARow(7,1);
+        throwsInARow(1,5);
+        throwsInARow(8,1);
+        Assert.assertEquals(28,bowling.getScore());
     }
 }
