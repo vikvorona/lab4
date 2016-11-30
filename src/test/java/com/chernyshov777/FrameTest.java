@@ -48,15 +48,15 @@ public class FrameTest {
     @Test
     public void testNextRollWithStrikeAndSpare() {
         Frame strikeFrame = new Frame(2);
-        Assert.assertEquals("current roll is wrong", 1, frame.getCurrentRoll());
+        Assert.assertEquals("current roll is wrong", 1, strikeFrame.getCurrentRoll());
         strikeFrame.nextRoll(10);
         Assert.assertTrue("not a strike", strikeFrame.isStrike());
 
         Frame spareFrame = new Frame(3);
         spareFrame.nextRoll(6);
         spareFrame.nextRoll(4);
-        Assert.assertEquals("current roll is wrong", 2, frame.getCurrentRoll());
-        Assert.assertTrue("not a spare", strikeFrame.isSpare());
-        Assert.assertFalse("strike", strikeFrame.isStrike());
+        Assert.assertEquals("current roll is wrong", 3, spareFrame.getCurrentRoll());
+        Assert.assertTrue("not a spare", spareFrame.isSpare());
+        Assert.assertFalse("strike", spareFrame.isStrike());
     }
 }

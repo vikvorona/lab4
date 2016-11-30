@@ -31,9 +31,15 @@ public class Frame {
         if (currentRoll == 1) {
             firstRollScore = pins;
             currentRoll++;
+            if (getTotalFrameScore() == 10) {
+                strike = true;
+            }
         } else if (currentRoll == 2) {
             secondRollScore = pins;
             currentRoll++;
+            if (getTotalFrameScore() == 10) {
+                spare = true;
+            }
         }
     }
 
