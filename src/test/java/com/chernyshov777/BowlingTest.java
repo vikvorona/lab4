@@ -132,6 +132,6 @@ public class BowlingTest {
             currentFrame++;
         }
         bowling.calculateScore();
-        Assert.assertEquals("total score error", 101, bowling.getTotalScore());
+        Assert.assertEquals("total score error", 91, bowling.getTotalScore());
     }
 }

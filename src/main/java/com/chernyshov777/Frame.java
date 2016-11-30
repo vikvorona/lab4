@@ -45,6 +45,9 @@ public class Frame {
             if (getTotalFrameScore() == 10) {
                 spare = true;
             }
+        } else if (currentRoll == 3) {
+            thirdRollScore = pins;
+            totalFrameScore += thirdRollScore;
         }
     }
 

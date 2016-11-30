@@ -30,12 +30,20 @@ public class Bowling {
         totalScore = 0;
         int currentFrame = 0;
         for (Frame frame : frames) {
-            if (currentFrame > 0) {
+            if (currentFrame > 0 && currentFrame != 9) {
                 if (frames.get(currentFrame-1).isSpare()) {
                     frames.get(currentFrame-1).addBonus(frame.getFirstRollScore());
                 }
                 if (frames.get(currentFrame-1).isStrike()) {
                     frames.get(currentFrame-1).addBonus(frame.getFirstRollScore()+frame.getSecondRollScore());
+                }
+            }
+            if (currentFrame == 9) {
+                if (frames.get(currentFrame).isSpare()) {
+                    frames.get(currentFrame).addBonus(frame.getThirdRollScore());
+                }
+                if (frames.get(currentFrame).isStrike()) {
+                    frames.get(currentFrame).addBonus(frame.getSecondRollScore()+frame.getThirdRollScore());
                 }
             }
             currentFrame++;
