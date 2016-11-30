@@ -78,4 +78,25 @@ public class BowlingTest {
         }
         Assert.assertEquals("total score error", 84, bowling.getTotalScore());
     }
+
+    /**
+     * Game with strikes test.
+     * Check totalScore if there was several strikes in game
+     */
+    @Test
+    public void testPlayGameWithStrikes() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 0) {
+                frame.nextRoll(10);
+            }
+            if (currentFrame == 2) {
+                frame.nextRoll(10);
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        Assert.assertEquals("total score error", 90, bowling.getTotalScore());
+    }
 }
