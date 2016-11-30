@@ -49,6 +49,8 @@ public class BowlingTest {
             if (currentFrame == 2) {
                 frame.nextRoll(5);
                 frame.nextRoll(5);
+                currentFrame++;
+                continue;
             }
             frame.nextRoll(4);
             frame.nextRoll(3);
@@ -69,10 +71,14 @@ public class BowlingTest {
             if (currentFrame == 0) {
                 frame.nextRoll(5);
                 frame.nextRoll(5);
+                currentFrame++;
+                continue;
             }
             if (currentFrame == 2) {
                 frame.nextRoll(5);
                 frame.nextRoll(5);
+                currentFrame++;
+                continue;
             }
             frame.nextRoll(4);
             frame.nextRoll(3);
@@ -113,8 +119,8 @@ public class BowlingTest {
     }
 
     /**
-     * Game with strikes test.
-     * Check totalScore if there was several strikes in game
+     * Game with strike in tenth frame test.
+     * Check totalScore if there was strike in last frame in game
      */
     @Test
     public void testPlayGameWithStrikeInTenthFrame() {
@@ -133,5 +139,28 @@ public class BowlingTest {
         }
         bowling.calculateScore();
         Assert.assertEquals("total score error", 91, bowling.getTotalScore());
+    }
+
+    /**
+     * Game with spare in tenth frame test.
+     * Check totalScore if there was spare in last frame
+     */
+    @Test
+    public void testPlayGameWithSpareInTenthFrame() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 9) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+                frame.nextRoll(4);
+                currentFrame++;
+                continue;
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 81, bowling.getTotalScore());
     }
 }
