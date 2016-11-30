@@ -13,12 +13,11 @@ public class FrameTest {
 
     @Before
     public void init() {
-        frame = new Frame();
+        frame = new Frame(1);
     }
 
     @Test
     public void testConstructor() {
-        Assert.assertEquals("wrong total score", 0, frame.getTotalScore());
         Assert.assertEquals("wrong current roll", 0, frame.getCurrentRoll());
         Assert.assertEquals("wrong first Roll score", 0, frame.getFirstRollScore());
         Assert.assertEquals("wrong second Roll score", 0, frame.getSecondRollScore());
