@@ -1,19 +1,25 @@
 package com.chernyshov777;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Chernyshov Daniil
  */
 public class Bowling {
     private int currentFrame;
     private int totalScore;
-    private boolean strike;
-    private boolean spare;
+    private List<Frame> frames;
 
     public Bowling() {
         currentFrame = 1;
         totalScore = 0;
-        strike = false;
-        spare = false;
+        //frames initialisation
+        frames = new ArrayList<>(10);
+        for (int i = 1; i <= 10; i++) {
+            Frame frame = new Frame(i);
+            frames.add(frame);
+        }
     }
 
     public int getCurrentFrame() {
@@ -32,19 +38,7 @@ public class Bowling {
         this.totalScore = totalScore;
     }
 
-    public boolean isStrike() {
-        return strike;
-    }
-
-    public void setStrike(boolean strike) {
-        this.strike = strike;
-    }
-
-    public boolean isSpare() {
-        return spare;
-    }
-
-    public void setSpare(boolean spare) {
-        this.spare = spare;
+    public List<Frame> getFrames() {
+        return frames;
     }
 }
