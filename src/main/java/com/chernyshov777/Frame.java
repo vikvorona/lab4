@@ -98,12 +98,4 @@ public class Frame {
     public boolean isSpare() {
         return spare;
     }
-
-    public void setStrike(boolean strike) {
-        this.strike = strike;
-    }
-
-    public void setSpare(boolean spare) {
-        this.spare = spare;
-    }
 }
