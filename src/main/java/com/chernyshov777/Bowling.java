@@ -22,6 +22,12 @@ public class Bowling {
         }
     }
 
+    private void calculateScore() {
+        for (Frame frame : frames) {
+            totalScore += frame.getTotalFrameScore();
+        }
+    }
+
     public int getCurrentFrame() {
         return currentFrame;
     }
@@ -31,6 +37,7 @@ public class Bowling {
     }
 
     public int getTotalScore() {
+        calculateScore();
         return totalScore;
     }
 
