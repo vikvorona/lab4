@@ -55,4 +55,27 @@ public class BowlingTest {
         }
         Assert.assertEquals("total score error", 77, bowling.getTotalScore());
     }
+
+    /**
+     * Game with spares test.
+     * Check totalScore if there was several spares in game
+     */
+    @Test
+    public void testPlayGameWithSeveralSpares() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 0) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+            }
+            if (currentFrame == 2) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        Assert.assertEquals("total score error", 84, bowling.getTotalScore());
+    }
 }
