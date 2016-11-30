@@ -23,4 +23,17 @@ public class BowlingTest {
         Assert.assertEquals("frames creation error", 10, bowling.getFrames().size());
         Assert.assertEquals("frame number error", 2, bowling.getFrames().get(1).getFrameNumber());
     }
+
+    /**
+     * Simple Bowling.playGame() test.
+     * Check totalScore for game.
+     */
+    @Test
+    public void testSimplePlayGame() {
+        for (Frame frame : bowling.getFrames()) {
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+        }
+        Assert.assertEquals("total score error", 70, bowling.getTotalScore());
+    }
 }
