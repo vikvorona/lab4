@@ -51,6 +51,7 @@ public class FrameTest {
         Assert.assertEquals("current roll is wrong", 1, strikeFrame.getCurrentRoll());
         strikeFrame.nextRoll(10);
         Assert.assertTrue("not a strike", strikeFrame.isStrike());
+        Assert.assertFalse("spare", strikeFrame.isSpare());
 
         Frame spareFrame = new Frame(3);
         spareFrame.nextRoll(6);

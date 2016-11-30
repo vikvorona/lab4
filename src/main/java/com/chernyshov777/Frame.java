@@ -13,6 +13,7 @@ public class Frame {
     private int totalFrameScore;
     private boolean strike;
     private boolean spare;
+    private boolean bonused;
 
     public Frame(int frameNumber) {
         this.frameNumber = frameNumber;
@@ -22,6 +23,7 @@ public class Frame {
         thirdRollScore = 0;
         strike = false;
         spare = false;
+        bonused = false;
     }
 
     /**
@@ -47,7 +49,15 @@ public class Frame {
     }
 
     public void addBonus(int bonus) {
-        totalFrameScore += bonus;
+        if (!bonused && bonus != 0) {
+            totalFrameScore += bonus;
+            bonused = true;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "frame " + getFrameNumber() + ": " + getTotalFrameScore();
     }
 
     /**
@@ -84,5 +94,13 @@ public class Frame {
 
     public boolean isSpare() {
         return spare;
+    }
+
+    public void setStrike(boolean strike) {
+        this.strike = strike;
+    }
+
+    public void setSpare(boolean spare) {
+        this.spare = spare;
     }
 }

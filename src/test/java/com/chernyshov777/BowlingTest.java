@@ -34,6 +34,7 @@ public class BowlingTest {
             frame.nextRoll(4);
             frame.nextRoll(3);
         }
+        bowling.calculateScore();
         Assert.assertEquals("total score error", 70, bowling.getTotalScore());
     }
 
@@ -53,6 +54,7 @@ public class BowlingTest {
             frame.nextRoll(3);
             currentFrame++;
         }
+        bowling.calculateScore();
         Assert.assertEquals("total score error", 77, bowling.getTotalScore());
     }
 
@@ -76,6 +78,7 @@ public class BowlingTest {
             frame.nextRoll(3);
             currentFrame++;
         }
+        bowling.calculateScore();
         Assert.assertEquals("total score error", 84, bowling.getTotalScore());
     }
 
@@ -89,14 +92,23 @@ public class BowlingTest {
         for (Frame frame : bowling.getFrames()) {
             if (currentFrame == 0) {
                 frame.nextRoll(10);
+                bowling.calculateScore();
+                Assert.assertEquals("total score error", 10, bowling.getTotalScore());
+                currentFrame++;
+                continue;
             }
             if (currentFrame == 2) {
                 frame.nextRoll(10);
+                bowling.calculateScore();
+                Assert.assertEquals("total score error", 34, bowling.getTotalScore());
+                currentFrame++;
+                continue;
             }
             frame.nextRoll(4);
             frame.nextRoll(3);
             currentFrame++;
         }
+        bowling.calculateScore();
         Assert.assertEquals("total score error", 90, bowling.getTotalScore());
     }
 }

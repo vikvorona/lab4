@@ -26,12 +26,16 @@ public class Bowling {
     /**
      * Calculate current game score
      */
-    private void calculateScore() {
+    public void calculateScore() {
+        totalScore = 0;
         int currentFrame = 0;
         for (Frame frame : frames) {
             if (currentFrame > 0) {
                 if (frames.get(currentFrame-1).isSpare()) {
                     frames.get(currentFrame-1).addBonus(frame.getFirstRollScore());
+                }
+                if (frames.get(currentFrame-1).isStrike()) {
+                    frames.get(currentFrame-1).addBonus(frame.getFirstRollScore()+frame.getSecondRollScore());
                 }
             }
             currentFrame++;
@@ -47,7 +51,6 @@ public class Bowling {
     }
 
     public int getTotalScore() {
-        calculateScore();
         return totalScore;
     }
     public List<Frame> getFrames() {
