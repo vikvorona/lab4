@@ -25,7 +25,7 @@ public class BowlingTest {
     }
 
     /**
-     * Simple Bowling.playGame() test.
+     * Simple game test.
      * Check totalScore for game.
      */
     @Test
@@ -35,5 +35,24 @@ public class BowlingTest {
             frame.nextRoll(3);
         }
         Assert.assertEquals("total score error", 70, bowling.getTotalScore());
+    }
+
+    /**
+     * Simple game with spare test.
+     * Check totalScore if there was spare in game
+     */
+    @Test
+    public void testPlayGameWithSpare() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 2) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        Assert.assertEquals("total score error", 77, bowling.getTotalScore());
     }
 }
