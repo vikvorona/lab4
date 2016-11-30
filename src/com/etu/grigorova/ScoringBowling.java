@@ -5,7 +5,7 @@ package com.etu.grigorova;
  */
 public class ScoringBowling {
     //our bowling score
-    private int score = -1;
+    private int score = 0;
 
     public void roll (int pins){
 
