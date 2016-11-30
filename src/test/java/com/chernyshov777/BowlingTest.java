@@ -20,7 +20,7 @@ public class BowlingTest {
     public void testConstructor() {
         Assert.assertEquals("wrong current frame", 1, bowling.getCurrentFrame());
         Assert.assertEquals("wrong total score", 0, bowling.getTotalScore());
-        Assert.assertFalse(bowling.isStrike());
-        Assert.assertFalse(bowling.isSpare());
+        Assert.assertEquals("frames creation error", 10, bowling.getFrames().size());
+        Assert.assertEquals("frame number error", 2, bowling.getFrames().get(1).getFrameNumber());
     }
 }
