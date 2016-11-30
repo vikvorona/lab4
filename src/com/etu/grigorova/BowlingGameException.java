@@ -1,7 +1,9 @@
 package com.etu.grigorova;
 
 /**
- * Created by zikovam on 29.11.16.
+ * Exception for my Bowling game realization
+ *
+ * @author AlGrigorova
  */
 public class BowlingGameException extends Exception {
     //Constructor without parameters
