@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Bowling scoring
  * @author Chernyshov Daniil
  */
 public class Bowling {
@@ -22,6 +23,9 @@ public class Bowling {
         }
     }
 
+    /**
+     * Calculate current game score
+     */
     private void calculateScore() {
         for (Frame frame : frames) {
             totalScore += frame.getTotalFrameScore();
@@ -32,19 +36,10 @@ public class Bowling {
         return currentFrame;
     }
 
-    public void setCurrentFrame(int currentFrame) {
-        this.currentFrame = currentFrame;
-    }
-
     public int getTotalScore() {
         calculateScore();
         return totalScore;
     }
-
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
-    }
-
     public List<Frame> getFrames() {
         return frames;
     }
