@@ -1,6 +1,8 @@
 package com.etu.grigorova;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * Bowling game realization
@@ -9,15 +11,12 @@ import java.util.ArrayList;
  */
 public class ScoringBowling {
     private ArrayList<Integer> rolls;
+
     private int currentRoll;
 
     public ScoringBowling () {
         currentRoll = 0;
         rolls = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            rolls.add(0);
-        }
-        rolls.add(0);
     }
 
     /**
@@ -26,12 +25,8 @@ public class ScoringBowling {
      * @param pins - knocked down pins
      */
     public void roll (int pins) {
-        rolls.set(currentRoll,pins);
+        rolls.add(pins);
         currentRoll++;
-        if (pins == 10){
-            rolls.set(currentRoll,0);
-            currentRoll++;
-        }
     }
 
     /**
@@ -39,9 +34,16 @@ public class ScoringBowling {
      */
     public int getScore () {
         int score = 0;
-        for (int roll :
-                rolls) {
-            score += roll;
+        int currentFrame = 0;
+        ListIterator<Integer> iter = rolls.listIterator();
+        while (iter.hasNext()) {
+            int roll = iter.next();
+            if (roll == 10) {
+                score += 10;
+                score += rolls.get(iter.nextIndex()) + rolls.get(iter.nextIndex() + 1);
+            } else {
+                score += roll;
+            }
         }
         return score;
     }
@@ -49,15 +51,6 @@ public class ScoringBowling {
     @Override
     public String toString () {
         String total = "Total score: " + getScore();
-        StringBuilder detail = new StringBuilder();
-        for (int i = 0; i < 20; i++) {
-            if (((i % 2) == 0) && (i != 20)) {
-                detail.append("[").append(rolls.get(i)).append(";");
-            } else if (((i % 2) != 0) && (i != 19)) {
-                detail.append(rolls.get(i)).append("] ");
-            }
-        }
-        detail.append(rolls.get(19)).append(";").append(rolls.get(20)).append("]");
-        return total + "\nThrows: " + "\n" + detail;
+        return total + "\nThrows: " + "\n" + rolls;
     }
 }
