@@ -1,7 +1,6 @@
 package com.etu.grigorova;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ListIterator;
 
 /**
@@ -34,18 +33,34 @@ public class ScoringBowling {
      */
     public int getScore () {
         int score = 0;
-        int currentFrame = 0;
         ListIterator<Integer> iter = rolls.listIterator();
-        while (iter.hasNext()) {
+        for (int currentFrame = 0; currentFrame < 10; currentFrame++) {
             int roll = iter.next();
             if (roll == 10) {
                 score += 10;
                 score += rolls.get(iter.nextIndex()) + rolls.get(iter.nextIndex() + 1);
+            } else if (isItSpare(iter.nextIndex())) {
+                score += 10;
+                score += rolls.get(iter.nextIndex());
+                iter.next();
             } else {
                 score += roll;
+                score += iter.next();
             }
         }
         return score;
+    }
+
+    /**
+     *
+     * @param nextIndex - index of ArrayList, last in current frame
+     * @return are this two throws spare
+     */
+    private boolean isItSpare(int nextIndex){
+        if (rolls.get(nextIndex-1)+rolls.get(nextIndex)==10){
+            return true;
+        }
+        return false;
     }
 
     @Override

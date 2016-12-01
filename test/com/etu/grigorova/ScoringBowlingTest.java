@@ -50,4 +50,10 @@ public class ScoringBowlingTest{
         throwsInARow(18,1);
         Assert.assertEquals(10+2+18,bowling.getScore());
     }
+    @Test
+    public void testOneSpare() throws BowlingGameException{
+        throwSpare();
+        throwsInARow(18,1);
+        Assert.assertEquals(29,bowling.getScore());
+    }
 }
