@@ -22,7 +22,6 @@ public class ScoringBowlingTest{
         for (int i = 0; i < throwNums; i++) {
             bowling.roll(pins);
         }
-        System.out.println(bowling);
     }
 
     private void throwStrike (){
@@ -30,30 +29,43 @@ public class ScoringBowlingTest{
     }
 
     private void throwSpare(){
-        bowling.roll(9);
-        bowling.roll(1);
+        bowling.roll(5);
+        bowling.roll(5);
     }
 
     @Test
     public void testAllFailGame() throws BowlingGameException{
         throwsInARow(20,0);
+        System.out.println(bowling);
         Assert.assertEquals(0,bowling.getScore());
     }
     @Test
     public void testAllOnesGame() throws BowlingGameException{
         throwsInARow(20,1);
+        System.out.println(bowling);
         Assert.assertEquals(20,bowling.getScore());
     }
     @Test
     public void testOneStrike() throws BowlingGameException{
         throwStrike();
         throwsInARow(18,1);
+        System.out.println(bowling);
         Assert.assertEquals(10+2+18,bowling.getScore());
     }
     @Test
     public void testOneSpare() throws BowlingGameException{
         throwSpare();
         throwsInARow(18,1);
+        System.out.println(bowling);
         Assert.assertEquals(29,bowling.getScore());
+    }
+    @Test
+    public void testAllSpare() throws BowlingGameException{
+        for (int i = 0; i <10; i++) {
+            throwSpare();
+        }
+        bowling.roll(4);
+        System.out.println(bowling);
+        Assert.assertEquals(158,bowling.getScore());
     }
 }

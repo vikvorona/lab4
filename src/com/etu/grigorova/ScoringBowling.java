@@ -38,26 +38,26 @@ public class ScoringBowling {
             int roll = iter.next();
             if (roll == 10) {
                 score += 10;
-                score += rolls.get(iter.nextIndex()) + rolls.get(iter.nextIndex() + 1);
+                score += rolls.get(iter.nextIndex()) + rolls.get(iter.nextIndex() + 1); //bonus
             } else if (isItSpare(iter.nextIndex())) {
                 score += 10;
-                score += rolls.get(iter.nextIndex());
-                iter.next();
+                score += iter.next();//bonus
             } else {
                 score += roll;
                 score += iter.next();
             }
+            System.out.println(roll);
         }
         return score;
     }
 
     /**
-     *
      * @param nextIndex - index of ArrayList, last in current frame
+     *
      * @return are this two throws spare
      */
-    private boolean isItSpare(int nextIndex){
-        if (rolls.get(nextIndex-1)+rolls.get(nextIndex)==10){
+    private boolean isItSpare (int nextIndex) {
+        if (rolls.get(nextIndex - 1) + rolls.get(nextIndex) == 10) {
             return true;
         }
         return false;
