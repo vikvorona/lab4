@@ -28,6 +28,10 @@ public class ScoringBowling {
     public void roll (int pins) {
         rolls.set(currentRoll,pins);
         currentRoll++;
+        if (pins == 10){
+            rolls.set(currentRoll,0);
+            currentRoll++;
+        }
     }
 
     /**

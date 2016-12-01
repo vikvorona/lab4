@@ -18,11 +18,20 @@ public class ScoringBowlingTest{
         bowling = new ScoringBowling();
     }
 
-    private void throwsInARow(int throwNums, int pins){
+    private void throwsInARow (int throwNums, int pins){
         for (int i = 0; i < throwNums; i++) {
             bowling.roll(pins);
         }
         System.out.println(bowling);
+    }
+
+    private void throwStrike (){
+        bowling.roll(10);
+    }
+
+    private void throwSpare(){
+        bowling.roll(9);
+        bowling.roll(1);
     }
 
     @Test
@@ -36,12 +45,9 @@ public class ScoringBowlingTest{
         Assert.assertEquals(20,bowling.getScore());
     }
     @Test
-    public void testTwo5RestOne() throws BowlingGameException{
-        throwsInARow(3,1);
-        throwsInARow(1,5);
-        throwsInARow(7,1);
-        throwsInARow(1,5);
-        throwsInARow(8,1);
-        Assert.assertEquals(28,bowling.getScore());
+    public void testOneStrike() throws BowlingGameException{
+        throwStrike();
+        throwsInARow(18,1);
+        Assert.assertEquals(10+2+18,bowling.getScore());
     }
 }
