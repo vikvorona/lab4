@@ -1,5 +1,5 @@
 ﻿package com.zdorovets;
-/*
+/**
  * BowlingGame class
  * @author Evgeny Zdorovets
  * created on 21/10/16
@@ -7,13 +7,13 @@
 public class BowlingGame {
 	private int rolls[] = new int[21];
 	private int currentRoll = 0;
-	/*
+	/**
 	 * @param pins - количество кеглей
 	 */
 	public void roll(int pins) {
 		rolls[currentRoll++] = pins;
 	}
-	/* 
+	/**
 	 * @return количество очков
 	 */
 	public int score(){
@@ -34,35 +34,35 @@ public class BowlingGame {
 		}
 		return score;
 	}
-	/* 
+	/**
 	 * @param frameIndex индекс захода
 	 * @return ситуация spare или нет
 	 */
 	private boolean isSpare(int frameIndex){
 		return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
 	}
-	/*
+	/**
      * @param frameIndex индекс захода
      * @return ситуация strike или нет
      */
 	private boolean isStrike(int frameIndex){
 		return rolls[frameIndex] == 10;
 	}
-	/* 
+	/**
 	 * @param frameIndex индекс захода
 	 * @return сумма очков за заход
 	 */
 	private int sumOfPinsInFrame(int frameIndex) {
 	    return rolls[frameIndex]+rolls[frameIndex+1];
 	  }
-    /*
+    /**
      * @param frameIndex индекс захода
      * @return бонус за spare
      */
 	private int spareBonus(int frameIndex) {
 	    return rolls[frameIndex + 2];
 	}
-	/*
+	/**
      * @param frameIndex индекс захода
      * @return бонус за strike
      */
