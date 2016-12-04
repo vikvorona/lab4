@@ -11,10 +11,7 @@ import java.util.ListIterator;
 public class ScoringBowling {
     private ArrayList<Integer> rolls;
 
-    private int currentRoll;
-
     public ScoringBowling () {
-        currentRoll = 0;
         rolls = new ArrayList<>();
     }
 
@@ -25,7 +22,6 @@ public class ScoringBowling {
      */
     public void roll (int pins) {
         rolls.add(pins);
-        currentRoll++;
     }
 
     /**
@@ -58,10 +54,7 @@ public class ScoringBowling {
      * @return are this two throws spare
      */
     private boolean isItSpare (int nextIndex) {
-        if ((rolls.get(nextIndex - 1) + rolls.get(nextIndex)) == 10) {
-            return true;
-        }
-        return false;
+        return ((rolls.get(nextIndex - 1) + rolls.get(nextIndex)) == 10) ;
     }
 
     @Override
