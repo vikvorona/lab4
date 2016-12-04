@@ -41,12 +41,13 @@ public class ScoringBowling {
                 score += rolls.get(iter.nextIndex()) + rolls.get(iter.nextIndex() + 1); //bonus
             } else if (isItSpare(iter.nextIndex())) {
                 score += 10;
-                score += iter.next();//bonus
+                iter.next();
+                score += rolls.get(iter.nextIndex());//bonus
             } else {
                 score += roll;
                 score += iter.next();
             }
-            System.out.println(roll);
+            //System.out.println(roll);
         }
         return score;
     }
@@ -57,7 +58,7 @@ public class ScoringBowling {
      * @return are this two throws spare
      */
     private boolean isItSpare (int nextIndex) {
-        if (rolls.get(nextIndex - 1) + rolls.get(nextIndex) == 10) {
+        if ((rolls.get(nextIndex - 1) + rolls.get(nextIndex)) == 10) {
             return true;
         }
         return false;

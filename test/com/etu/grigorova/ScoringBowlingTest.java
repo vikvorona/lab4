@@ -55,17 +55,19 @@ public class ScoringBowlingTest{
     @Test
     public void testOneSpare() throws BowlingGameException{
         throwSpare();
-        throwsInARow(18,1);
+        bowling.roll(7);
+        throwsInARow(18,0);
         System.out.println(bowling);
-        Assert.assertEquals(29,bowling.getScore());
+        Assert.assertEquals(24,bowling.getScore());
     }
     @Test
     public void testAllSpare() throws BowlingGameException{
         for (int i = 0; i <10; i++) {
             throwSpare();
         }
-        bowling.roll(4);
+        bowling.roll(5);
         System.out.println(bowling);
-        Assert.assertEquals(158,bowling.getScore());
+        Assert.assertEquals(150,bowling.getScore());
     }
+
 }
