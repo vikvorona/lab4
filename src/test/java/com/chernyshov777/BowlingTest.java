@@ -1,0 +1,166 @@
+package com.chernyshov777;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Unit test for simple Bowling.
+ * @author Chernyshov Daniil
+ */
+public class BowlingTest {
+    private Bowling bowling;
+
+    @Before
+    public void init() {
+        bowling = new Bowling();
+    }
+
+    @Test
+    public void testConstructor() {
+        Assert.assertEquals("wrong current frame", 1, bowling.getCurrentFrame());
+        Assert.assertEquals("wrong total score", 0, bowling.getTotalScore());
+        Assert.assertEquals("frames creation error", 10, bowling.getFrames().size());
+        Assert.assertEquals("frame number error", 2, bowling.getFrames().get(1).getFrameNumber());
+    }
+
+    /**
+     * Simple game test.
+     * Check totalScore for game.
+     */
+    @Test
+    public void testSimplePlayGame() {
+        for (Frame frame : bowling.getFrames()) {
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 70, bowling.getTotalScore());
+    }
+
+    /**
+     * Simple game with spare test.
+     * Check totalScore if there was spare in game
+     */
+    @Test
+    public void testPlayGameWithSpare() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 2) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+                currentFrame++;
+                continue;
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 77, bowling.getTotalScore());
+    }
+
+    /**
+     * Game with spares test.
+     * Check totalScore if there was several spares in game
+     */
+    @Test
+    public void testPlayGameWithSeveralSpares() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 0) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+                currentFrame++;
+                continue;
+            }
+            if (currentFrame == 2) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+                currentFrame++;
+                continue;
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 84, bowling.getTotalScore());
+    }
+
+    /**
+     * Game with strikes test.
+     * Check totalScore if there was several strikes in game
+     */
+    @Test
+    public void testPlayGameWithStrikes() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 0) {
+                frame.nextRoll(10);
+                bowling.calculateScore();
+                Assert.assertEquals("total score error", 10, bowling.getTotalScore());
+                currentFrame++;
+                continue;
+            }
+            if (currentFrame == 2) {
+                frame.nextRoll(10);
+                bowling.calculateScore();
+                Assert.assertEquals("total score error", 34, bowling.getTotalScore());
+                currentFrame++;
+                continue;
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 90, bowling.getTotalScore());
+    }
+
+    /**
+     * Game with strike in tenth frame test.
+     * Check totalScore if there was strike in last frame in game
+     */
+    @Test
+    public void testPlayGameWithStrikeInTenthFrame() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 9) {
+                frame.nextRoll(10);
+                frame.nextRoll(5);
+                frame.nextRoll(4);
+                currentFrame++;
+                continue;
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 91, bowling.getTotalScore());
+    }
+
+    /**
+     * Game with spare in tenth frame test.
+     * Check totalScore if there was spare in last frame
+     */
+    @Test
+    public void testPlayGameWithSpareInTenthFrame() {
+        int currentFrame = 0;
+        for (Frame frame : bowling.getFrames()) {
+            if (currentFrame == 9) {
+                frame.nextRoll(5);
+                frame.nextRoll(5);
+                frame.nextRoll(4);
+                currentFrame++;
+                continue;
+            }
+            frame.nextRoll(4);
+            frame.nextRoll(3);
+            currentFrame++;
+        }
+        bowling.calculateScore();
+        Assert.assertEquals("total score error", 81, bowling.getTotalScore());
+    }
+}
