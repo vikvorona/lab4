@@ -69,5 +69,9 @@ public class ScoringBowlingTest{
         System.out.println(bowling);
         Assert.assertEquals(150,bowling.getScore());
     }
-
+    @Test
+    public void testAllStrikes() throws BowlingGameException {
+        throwsInARow(12,10);
+        Assert.assertEquals(300, bowling.getScore());
+    }
 }
