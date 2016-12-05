@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class BowlingGameTest {
-    BowlingGame game = new BowlingGame();
+    private BowlingGame game = new BowlingGame();
 
     @Test
     public void zeroPins() {
@@ -34,5 +34,16 @@ public class BowlingGameTest {
             game.roll(0);
         }
         assertEquals(29, game.getScore());
+    }
+
+    @Test
+    public void checkStrike() {
+        game.roll(10);
+        game.roll(5);
+        game.roll(3);
+        for (int i = 0; i <  17; i++) {
+            game.roll(0);
+        }
+        assertEquals(26, game.getScore());
     }
 }

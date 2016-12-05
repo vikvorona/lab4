@@ -4,23 +4,38 @@ public class BowlingGame {
     private int score = 0;
     private int index = 0;
     private int[] pins = new int[21];
+    private int pinIndex = 0;
 
     public void roll(int pin) {
         pins[index++] = pin;
     }
 
     public int getScore() {
-        for (int i = 0; i < 20; i++) {
-            score += pins[i];
-            if (isSpray(i)) {
-                score += pins[i + 1] + pins[i + 2];
-                i += 1;
+        for (int i = 0; i < 10; i++) {
+            if (isStrike(pinIndex)) {
+                score += getSpareScore(pinIndex);
+                pinIndex++;
+            } else {
+                score += isSpare(pinIndex) ? getSpareScore(pinIndex) : getDefaultScore(pinIndex);
+                pinIndex += 2;
             }
         }
         return score;
     }
 
-    private boolean isSpray(int i) {
+    private int getSpareScore(int i) {
+        return getDefaultScore(i) + pins[i + 2];
+    }
+
+    private int getDefaultScore(int i) {
+        return pins[i] + pins[i + 1];
+    }
+
+    private boolean isStrike(int i) {
+        return pins[i] == 10;
+    }
+
+    private boolean isSpare(int i) {
         return pins[i] + pins[i + 1] == 10;
     }
 }
