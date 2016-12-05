@@ -5,13 +5,14 @@ public class BowlingGame {
     private int index = 0;
     private int[] pins = new int[21];
     private int pinIndex = 0;
+    private int FRAME_COUNT = 10;
 
     public void roll(int pin) {
         pins[index++] = pin;
     }
 
     public int getScore() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < FRAME_COUNT; i++) {
             if (isStrike(pinIndex)) {
                 score += getSpareScore(pinIndex);
                 pinIndex++;
