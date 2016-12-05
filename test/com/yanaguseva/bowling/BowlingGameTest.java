@@ -22,4 +22,17 @@ public class BowlingGameTest {
         }
         assertEquals(20, game.getScore());
     }
+
+    @Test
+    public void checkSpare() {
+        game.roll(5);
+        game.roll(5);
+        game.roll(7);
+        game.roll(3);
+        game.roll(1);
+        for (int i = 0; i < 15; i++) {
+            game.roll(0);
+        }
+        assertEquals(29, game.getScore());
+    }
 }
