@@ -9,7 +9,7 @@ public class BowlingGame {
 	private int[] rolls;
 	
 	BowlingGame() {
-		rolls = new int[ROLLS + 1];
+		rolls = new int[ROLLS + 5];
 		rollIndex = 0;
 	}
 	
@@ -24,10 +24,14 @@ public class BowlingGame {
 		int result = 0;
 		for(int i = 0; i < ROLLS; i += 2) {
 			result += (rolls[i] + rolls[i + 1]);
-			if(isStrike(i)) {
+			if(i + 2 == ROLLS && isStrike(i)) {
+				for(int j = ROLLS; j < rollIndex; j++)
+					result += rolls[j];
+			}
+			else if(isStrike(i)) {
 				result += strikeWrapper(i + 2);
 			}
-			else if(i < ROLLS - 2 && isSpare(i)) {
+			else if(isSpare(i)) {
 				result += rolls[i + 2];
 			}
 		}
@@ -48,7 +52,7 @@ public class BowlingGame {
 		if(index == 18 && isStrike(index))
 			res += rolls[index] + rolls[index + 1] + rolls[index + 2];
 		else {
-			if(isStrike(index)) {
+			if(isStrike(index) && isStrike(index + 2)) {
 				if(isStrike(index + 2)) {
 					for(int i = index; i < index + 4; i++)
 						res += rolls[i];

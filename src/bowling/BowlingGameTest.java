@@ -50,7 +50,7 @@ public class BowlingGameTest {
 			bObj.makeRoll(0);
 		bObj.makeRoll(10);
 		bObj.makeRoll(3);
-		Assert.assertEquals(26, bObj.getResultScore());
+		Assert.assertEquals(13, bObj.getResultScore());
 	}
 
 }
