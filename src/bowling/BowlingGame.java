@@ -19,9 +19,18 @@ public class BowlingGame {
 	
 	public int getResultScore() {
 		int result = 0;
-		for(int i = 0; i < rollIndex; i++)
-			result += rolls[i];
+		for(int i = 0; i < ROLLS; i += 2) {
+			result += (rolls[i] + rolls[i + 1]);
+			if(i < ROLLS - 2 && isSpare(i)) {
+				result += rolls[i + 2];
+			}
+		}
 		
 		return result;
 	}
+	
+	private boolean isSpare(int i) {
+		return (rolls[i] + rolls[i + 1]) == 10;
+	}
+	
 }
