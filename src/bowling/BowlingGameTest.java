@@ -9,7 +9,6 @@ public class BowlingGameTest {
 	
 	BowlingGame bObj = new BowlingGame();
 	
-	//Test for all for rolls is zero
 	@Test
 	public void testZeroScore() {
 		for(int i = 0; i < BowlingGame.ROLLS; i++)
@@ -17,5 +16,6 @@ public class BowlingGameTest {
 		
 		Assert.assertEquals(0, bObj.getResultScore());
 	}
+	
 
 }
