@@ -33,14 +33,15 @@ public class BowlingGameTest {
 	@Test
 	public void testStrikeScore() {
 		bObj.makeRoll(10);
+		//
 		bObj.makeRoll(3);
 		bObj.makeRoll(3);
-		for(int i = 0; i < BowlingGame.ROLLS - 5; i++)
+		for(int i = 0; i < BowlingGame.ROLLS - 6; i++)
 			bObj.makeRoll(0);
 		
-		bObj.makeRoll(10);
 		bObj.makeRoll(4);
-		Assert.assertEquals(40, bObj.getResultScore());
+		bObj.makeRoll(0);
+		Assert.assertEquals(26, bObj.getResultScore());
 	}
 
 }
