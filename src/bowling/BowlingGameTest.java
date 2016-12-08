@@ -43,5 +43,14 @@ public class BowlingGameTest {
 		bObj.makeRoll(0);
 		Assert.assertEquals(26, bObj.getResultScore());
 	}
+	
+	@Test
+	public void testTenthFrame() {
+		for(int i = 0; i < BowlingGame.ROLLS - 1; i++)
+			bObj.makeRoll(0);
+		bObj.makeRoll(10);
+		bObj.makeRoll(3);
+		Assert.assertEquals(26, bObj.getResultScore());
+	}
 
 }
