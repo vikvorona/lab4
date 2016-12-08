@@ -17,5 +17,17 @@ public class BowlingGameTest {
 		Assert.assertEquals(0, bObj.getResultScore());
 	}
 	
+	@Test
+	public void testSpareScore() {
+		bObj.makeRoll(3);
+		bObj.makeRoll(7);
+		bObj.makeRoll(3);
+		bObj.makeRoll(3);
+		
+		for(int i = 0; i < BowlingGame.ROLLS - 4; i++)
+			bObj.makeRoll(0);
+		
+		Assert.assertEquals(19, bObj.getResultScore());
+	}
 
 }
