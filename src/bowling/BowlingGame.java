@@ -1,34 +1,48 @@
 package bowling;
 
 public class BowlingGame {
-	public static final int FRAMES = 10;
-	public static final int ROLLS = 20;
+	public static final int ROLLS = 20; //всего 10 попыток, в каждой попытке 2 броска
+	public static final int MAXROLLS = 23;//максимальное число бросков с учетом дополнительных
+	private final int MAXPINS = 10; // максимальное число выбитых кегель 
+	private final int LASTFRAME = 18; // последняя попытка
+	
 	
 	private int rollIndex;
 	
 	private int[] rolls;
 	
 	BowlingGame() {
-		rolls = new int[ROLLS + 5];
+		rolls = new int[MAXROLLS];
 		rollIndex = 0;
 	}
 	
 	public void makeRoll(int pins) {
 		rolls[rollIndex++] = pins;
-		if(pins == 10 && (rollIndex - 1) % 2 == 0) {
+		
+		//если первым броском выбили страйк
+		//то переходим сразу к следующей попытке
+		if(pins == MAXPINS && (rollIndex - 1) % 2 == 0) {
 			rolls[rollIndex++] = 0;
 		}
+	}
+	
+	//сумма бросков попытки
+	private int attemptSum(int i) {
+		return rolls[i] + rolls[i + 1];
 	}
 	
 	public int getResultScore() {
 		int result = 0;
 		for(int i = 0; i < ROLLS; i += 2) {
-			result += (rolls[i] + rolls[i + 1]);
+			result += attemptSum(i);
+			//если последним броском выбили страйк
+			//то считаем сумму дополнительных бросков
 			if(i + 2 == ROLLS && isStrike(i)) {
 				for(int j = ROLLS; j < rollIndex; j++)
 					result += rolls[j];
 			}
 			else if(isStrike(i)) {
+				//удваиваем два следующих броска
 				result += strikeWrapper(i + 2);
 			}
 			else if(isSpare(i)) {
@@ -40,28 +54,44 @@ public class BowlingGame {
 	}
 	
 	private boolean isSpare(int i) {
-		return (rolls[i] + rolls[i + 1]) == 10;
+		return (rolls[i] + rolls[i + 1]) == MAXPINS;
 	}
 	
 	private boolean isStrike(int i) {
-		return rolls[i] == 10 || rolls[i + 1] == 10;
+		return rolls[i] == MAXPINS || rolls[i + 1] == MAXPINS;
 	}
 	
+	/*
+	 * Удвоение двух следующих бросков после выбитого страйка 
+	 * 
+	 * @param индекс следующей попытки после страйка
+	 * 
+	 * @res результат сложения двух следующих бросков
+	 *
+	 */
 	private int strikeWrapper(int index) {
 		int res = 0;
-		if(index == 18 && isStrike(index))
-			res += rolls[index] + rolls[index + 1] + rolls[index + 2];
+		//если в следующей попытке выбит страйк и она последняя
+		//то результат равен сумма этой попытки и дополнительного броска
+		if(index == LASTFRAME && isStrike(index))
+			res += attemptSum(index) + rolls[index + 2];
 		else {
-			if(isStrike(index) && isStrike(index + 2)) {
+			if(isStrike(index)) {
+				//если  в двух следующих попытках страйк, то складываем 
+				//эти попытки ( в каждой попытке по 2 броска)
 				if(isStrike(index + 2)) {
 					for(int i = index; i < index + 4; i++)
 						res += rolls[i];
 				}
+				//иначе если с двух следующих попытках в первой страйк
+				//а во второй нет, то складывается страйк первой попытки 
+				//и первый бросок из следующей попытки за страйком
 				else
-					res += rolls[index] + rolls[index + 1] + rolls[index + 2];
+					res += attemptSum(index) + rolls[index + 2];
 			}
+			//иначе складывается два следующих броска
 			else
-				res += rolls[index] + rolls[index + 1];
+				res += attemptSum(index);
 		}
 		
 		return res;
