@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class BowlingTest {
 
-	Bowling game = new Bowling();
+	private Bowling game = new Bowling();
 	
 	private void rollIt(int pin, int rolls) {
 		for (int i=0; i<rolls; i++) {
@@ -15,13 +15,13 @@ public class BowlingTest {
 	}
 	
 	@Test
-	public void RollGame() {
+	public void rollGame() {
 		rollIt(1,20);
 		assertEquals(20, game.getScore());
 	}
 	
 	@Test
-	public void RollSpare() {
+	public void rollSpare() {
 		game.roll(8);
 		game.roll(2);
 		game.roll(4);
@@ -30,7 +30,7 @@ public class BowlingTest {
 	}
 	
 	@Test
-	public void RollStrike() {
+	public void rollStrike() {
 		game.roll(10);
 		game.roll(2);
 		game.roll(6);
@@ -39,7 +39,7 @@ public class BowlingTest {
 	}
 	
 	@Test
-	public void RollAllPinsTen() {
+	public void rollAllPinsTen() {
 		rollIt(10,12);
 		assertEquals(300, game.getScore());
 	}
