@@ -10,8 +10,8 @@ public class BowlingTest {
 	public void RollGame() {
 		Bowling game = new Bowling();
 		for (int i=0; i<20; i++) {
-			game.roll(0);
+			game.roll(1);
 		}
-		assertEquals(0, game.getScore());
+		assertEquals(20, game.getScore());
 	}
 }
