@@ -28,6 +28,7 @@ public class BowlingTest {
 		rollIt(0,17);
 		assertEquals(18, game.getScore());
 	}
+	
 	@Test
 	public void RollStrike() {
 		game.roll(10);
@@ -35,5 +36,11 @@ public class BowlingTest {
 		game.roll(6);
 		rollIt(0,17);
 		assertEquals(26, game.getScore());
+	}
+	
+	@Test
+	public void RollAllPinsTen() {
+		rollIt(10,12);
+		assertEquals(300, game.getScore());
 	}
 }
